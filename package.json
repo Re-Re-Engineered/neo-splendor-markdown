@@ -4,7 +4,9 @@
   "description": "A markdown CSS theme.",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,7 @@
     "furtive-typescale": "0.0.4"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-htmlincluder": "^0.1.0",
     "gulp-remarkable": "^1.1.2",
     "gulp-rename": "^1.2.2",

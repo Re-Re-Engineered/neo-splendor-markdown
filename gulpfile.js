@@ -16,12 +16,6 @@ gulp.task('md', function() {
     .pipe(gulp.dest('example'));
 });
 
-gulp.task('html', ['md', 'css'], function() {
-  return gulp.src('example/*.html')
-    .pipe(includer())
-    .pipe(gulp.dest('./'));
-});
-
 gulp.task('css', function() {
   return gulp.src('index.css')
     .pipe(rework(reworkNPM(), classPrefix('splendor-'), media(), reworkVars()))
@@ -30,10 +24,18 @@ gulp.task('css', function() {
     .pipe(gulp.dest('css'));
 });
 
+gulp.task('html', gulp.series('md', 'css'), function() {
+  return gulp.src('example/*.html')
+    .pipe(includer())
+    .pipe(gulp.dest('./'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(['*.md', '*.css'], function() {
     gulp.start('default');
   });
 });
 
-gulp.task('default', ['md', 'css', 'html', 'watch']);
+gulp.task('default', gulp.series('md', 'css', 'html', 'watch'));
+
+gulp.task('build', gulp.series('md', 'css', 'html'));
